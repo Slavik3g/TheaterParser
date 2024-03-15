@@ -2,6 +2,7 @@ import re
 import os
 import json
 import time
+import logging
 import requests
 from dotenv import load_dotenv
 
@@ -9,6 +10,8 @@ load_dotenv()
 
 TOKEN = os.getenv("TOKEN")
 CHAT_ID = os.getenv("CHAT_ID")
+logging.basicConfig(format='[%(levelname)s] %(asctime)s %(message)s', level=logging.INFO)
+logger = logging.getLogger()
 
 
 def check_for_update(url, phrase):
@@ -39,12 +42,15 @@ def main():
                 send_message(message=message, chat_id=CHAT_ID, token=TOKEN)
         else:
             hours_to_info -= 0.5
+            logger.info(f"I'm alive {hours_to_info=}")
             if not hours_to_info:
                 message = "Я жив и всё ещё слежу за билетами!"
                 send_message(message=message, chat_id=CHAT_ID, token=TOKEN)
                 hours_to_info = 24
+        logger.info("Going to sleep")
         time.sleep(1800)
 
 
 if __name__ == "__main__":
+    logger.info('Service starting')
     main()
