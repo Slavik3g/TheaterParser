@@ -6,6 +6,7 @@ import time
 import requests
 
 
+
 def check_for_update(*, url: str, phrase: str) -> bool:
     """
     Returns False if phrase exists, that means that the service has not been updated
@@ -18,6 +19,7 @@ def check_for_update(*, url: str, phrase: str) -> bool:
 
 def main():
     theatre_bot = TelegramBot(TOKEN)
+    theatre_bot.send_message(text="Hello!", chat_id=CHAT_ID)
     checking_page_url = "https://www.rustheatre.by/?month=6"
     daily_notification = 24
     while True:
