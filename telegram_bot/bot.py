@@ -1,7 +1,7 @@
 from .links import LinksEnum
 
 import json
-from typing import Optional
+from typing import Optional, Union
 import requests
 
 
@@ -13,7 +13,7 @@ class TelegramBot:
 
     def send_message(self,
                      *,
-                     chat_id: int | str,
+                     chat_id: Union[int, str],
                      text: str,
                      message_thread_id: Optional[int] = None,
                      parse_mode: Optional[str] = "",
